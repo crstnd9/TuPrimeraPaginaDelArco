@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h2>Buscar Película</h2>
+    <form method="get">
+        <input type="text" name="titulo" placeholder="Buscar por título">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h3>Resultados:</h3>
+    <ul>
+    {% for peli in peliculas %}
+        <li>{{ peli.titulo }} ({{ peli.fecha_estreno }})</li>
+    {% empty %}
+        <li>No se encontraron resultados.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
