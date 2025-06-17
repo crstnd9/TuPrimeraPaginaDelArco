@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1>Películas</h1>
+
+<!-- Formulario de búsqueda -->
+<form method="get" action="{% url 'pelicula_list' %}">
+    <input type="text" name="titulo" placeholder="Buscar por título..." value="{{ titulo }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+<!-- Listado de películas -->
+{% if peliculas %}
+    {% for pelicula in peliculas %}
+        <div>
+            <h2>{{ pelicula.titulo }}</h2>
+            {% if pelicula.imagen %}
+                <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" width="200">
+            {% endif %}
+            <p>{{ pelicula.descripcion|safe }}</p>
+            <p>Fecha: {{ pelicula.fecha }}</p>
+            <a href="{% url 'pelicula_detail' pelicula.pk %}">Ver más</a>
+        </div>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No se encontraron películas.</p>
+{% endif %}
+
+{% endblock %}

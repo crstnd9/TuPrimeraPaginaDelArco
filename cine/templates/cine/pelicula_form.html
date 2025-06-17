@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>{% if object %}Editar{% else %}Agregar{% endif %} Película</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="{% url 'pelicula_list' %}">Volver al listado</a>
+{% endblock %}

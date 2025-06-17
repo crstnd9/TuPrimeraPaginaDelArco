@@ -1,49 +1,84 @@
-# TuPrimeraPaginaDelArco
+# Cine Argentino - Blog de Películas
 
-Este proyecto fue desarrollado con Django como parte del curso de Python.  
-La temática elegida es cine argentino.
-
-El sitio permite:  
-• Cargar directores  
-• Cargar categorías (géneros de películas)  
-• Cargar películas asociadas a un director y una categoría  
-• Buscar películas por título  
+Este proyecto es una aplicación web estilo blog, desarrollada en Django, donde se pueden consultar, crear y gestionar películas del cine argentino. Cuenta con funcionalidades de autenticación, perfiles de usuario, mensajería interna y CRUD completo del modelo principal.
 
 ---
 
-## Qué incluye
+## 🔧 Tecnologías utilizadas
 
-- Patrón MVT (Modelo – Vista – Template)  
-- Herencia de plantillas con `base.html`  
-- Tres modelos: Director, Categoría y Película  
-- Formularios para cada modelo  
-- Formulario de búsqueda de películas  
-- Proyecto completo en GitHub  
-
----
-
-## Cómo ejecutar el proyecto
-
-1. Clonar o descargar el repositorio  
-2. Verificar que Python esté instalado  
-3. Instalar Django con: **pip install django**  
-4. Desde la carpeta del proyecto ejecutar: **python manage.py runserver**  
-5. Abrir el navegador en: **http://127.0.0.1:8000/**  
+- Python 3
+- Django 5.2
+- SQLite3
+- HTML / CSS (básico)
+- Bootstrap (opcional)
+- Django CKEditor
 
 ---
 
-## Orden sugerido para probar
+## 🎬 Funcionalidades principales
 
-1. Inicio – enlace principal  
-2. Agregar director  
-3. Agregar categoría  
-4. Agregar película  
-5. Buscar película  
+- Registro, login, logout de usuarios
+- Perfil de usuario con avatar, nombre, apellido, email y biografía
+- Edición del perfil y cambio de contraseña
+- CRUD de películas (título, director, descripción enriquecida, imagen, fecha)
+- Búsqueda de películas por título
+- Mensajes entre usuarios
+- Vista de inicio y vista "Acerca de mí"
+- Validación de login para crear/editar/borrar
+- Plantilla base con herencia (`base.html`) y navegación
+- CBV, mixins y decoradores utilizados correctamente
+- Mensajes si no hay resultados en la búsqueda o en el listado
+- Rutas organizadas por apps (`cine`, `perfiles`, `mensajes`)
 
 ---
 
-## Estructura
+## 🗂 Estructura del proyecto
 
-- **cine/** – modelos, vistas, formularios, URLs y plantillas  
-- **templates/** – archivos HTML  
-- **PaginaDelArco/** – configuración del proyecto Django  
+- `cine`: manejo de películas (modelo principal)
+- `perfiles`: vistas de registro, login, perfil y edición de usuario
+- `mensajes`: envío, lectura y bandeja de entrada de mensajes
+- `templates`: herencia de diseño con navbar y diseño responsive
+- `media`: carpeta local donde se guardan las imágenes (avatar y películas)
+
+---
+
+## 🚫 Archivos excluidos del repositorio
+
+En `.gitignore` se excluyeron los siguientes archivos y carpetas:
+
+- `__pycache__/`
+- `db.sqlite3`
+- `/media/`
+
+---
+
+## 📦 Instalación y ejecución
+
+1. Clonar el repositorio
+2. Crear un entorno virtual  
+   `python -m venv env`
+3. Activar el entorno virtual  
+   - En Windows: `env\Scripts\activate`
+   - En Linux/macOS: `source env/bin/activate`
+4. Instalar dependencias  
+   `pip install -r requirements.txt`
+5. Correr migraciones  
+   `python manage.py migrate`
+6. Levantar el servidor  
+   `python manage.py runserver`
+7. Acceder en `http://localhost:8000/`
+
+---
+
+## 🎥 Video de presentación
+
+Grabación mostrando la web en funcionamiento (máximo 10 minutos).  
+[📎 Link al video acá cuando esté listo]
+
+---
+
+## 📧 Autor
+
+Proyecto individual realizado por: **Cristian Del Arco**
+
+---

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>{{ pelicula.titulo }}</h2>
+
+<p><strong>Director:</strong> {{ pelicula.director }}</p>
+<p><strong>Categoría:</strong> {{ pelicula.categoria }}</p>
+<p><strong>Descripción:</strong> {{ pelicula.descripcion|linebreaks }}</p>
+<p><strong>Fecha de estreno:</strong> {{ pelicula.fecha_estreno }}</p>
+
+{% if pelicula.imagen %}
+    <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" width="300">
+{% endif %}
+
+{% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'pelicula_update' pelicula.id %}">Editar</a> |
+        <a href="{% url 'pelicula_delete' pelicula.id %}">Eliminar</a>
+    </p>
+{% endif %}
+
+<a href="{% url 'pelicula_list' %}">Volver al listado</a>
+{% endblock %}
