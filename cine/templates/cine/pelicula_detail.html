@@ -1,23 +1,51 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block contenido %}
 <h2>{{ pelicula.titulo }}</h2>
-
+<p><strong>Descripción:</strong> {{ pelicula.descripcion }}</p>
 <p><strong>Director:</strong> {{ pelicula.director }}</p>
 <p><strong>Categoría:</strong> {{ pelicula.categoria }}</p>
-<p><strong>Descripción:</strong> {{ pelicula.descripcion|linebreaks }}</p>
-<p><strong>Fecha de estreno:</strong> {{ pelicula.fecha_estreno }}</p>
+<p><strong>Año de estreno:</strong> {{ pelicula.fecha_estreno }}</p>
 
-{% if pelicula.imagen %}
-    <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" width="300">
+<hr>
+
+<h3>Reseñas</h3>
+
+{% if resenas %}
+  <ul>
+    {% for resena in resenas %}
+      <li>
+        <strong>
+          <a href="{% url 'perfil_publico' resena.usuario.username %}">
+            {{ resena.usuario.username }}
+          </a>
+        </strong> ({{ resena.fecha|date:"d/m/Y H:i" }}):<br>
+        {{ resena.texto }}
+        
+        {% if resena.usuario == user %}
+          <br>
+          <a href="{% url 'editar_resena' resena.pk %}">Editar</a> |
+          <a href="{% url 'eliminar_resena' resena.pk %}">Eliminar</a>
+        {% endif %}
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No hay reseñas todavía.</p>
 {% endif %}
+
+<hr>
 
 {% if user.is_authenticated %}
-    <p>
-        <a href="{% url 'pelicula_update' pelicula.id %}">Editar</a> |
-        <a href="{% url 'pelicula_delete' pelicula.id %}">Eliminar</a>
-    </p>
+  <h3>Agregar una reseña</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+{% else %}
+  <p><a href="{% url 'login' %}">Iniciá sesión</a> para dejar una reseña.</p>
 {% endif %}
-
-<a href="{% url 'pelicula_list' %}">Volver al listado</a>
 {% endblock %}

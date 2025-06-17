@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Perfil
 from .forms import PerfilFormulario, RegistroFormulario
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 @login_required
 def perfil_usuario(request):
@@ -35,3 +36,7 @@ def registro(request):
         formulario = RegistroFormulario()
 
     return render(request, 'perfiles/registro.html', {'formulario': formulario})
+
+def perfil_publico(request, username):
+    usuario = get_object_or_404(User, username=username)
+    return render(request, 'perfiles/perfil_publico.html', {'usuario': usuario})

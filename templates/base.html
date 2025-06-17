@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ArgenCine</title>
+    <style>
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; font-size: 40px; color: darkred; font-family: Arial, sans-serif; margin-top: 20px;">
+  ArgenCine
+</h1>
+
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'about' %}">Acerca de mí</a>
+        <a href="{% url 'pelicula_list' %}">Películas</a>
+        <a href="{% url 'pelicula_create' %}">Agregar Película</a>
+        <a href="{% url 'perfil_usuario' %}">Mi perfil</a>
+        <a href="{% url 'mensajes' %}">Mensajes</a>
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+    </nav>
+
+    {% block contenido %}
+    {% endblock %}
+
+</body>
+</html>

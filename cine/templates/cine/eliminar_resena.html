@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h2>¿Estás seguro de que querés eliminar esta reseña?</h2>
+
+<p><strong>{{ resena.texto }}</strong></p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Sí, eliminar</button>
+</form>
+
+<p><a href="{% url 'detalle_con_reseñas' resena.pelicula.pk %}">Cancelar</a></p>
+{% endblock %}

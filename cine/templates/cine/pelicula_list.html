@@ -21,8 +21,7 @@
                 <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" width="200">
             {% endif %}
             <p>{{ pelicula.descripcion|safe }}</p>
-            <p>Fecha: {{ pelicula.fecha }}</p>
-            <a href="{% url 'pelicula_detail' pelicula.pk %}">Ver más</a>
+            <a href="{% url 'detalle_con_reseñas' pelicula.pk %}">Ver más</a>
         </div>
         <hr>
     {% endfor %}
